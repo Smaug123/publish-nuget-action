@@ -2,7 +2,8 @@
 
 A GitHub Action which pushes a package to NuGet.org, and also performs [GitHub artefact attestation](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds) on the result.
 
-If there's already a package in NuGet with that ID and version number, this step results in the "skipped" status.
+If there's already a package in NuGet with that ID and version number, this job will detect this and do no further work: it will pass successfully without attempting an artefact attestation.
+It will *not* verify that the remote artefact is identical to the one that the pipeline built, because NuGet [still does not support reproducible packs](https://github.com/NuGet/Home/issues/6229).
 
 After this action has run successfully, you should be able to NuGet install the package at the published version, and verify the attestation corresponding to the `.nupkg` file in your NuGet cache.
 
