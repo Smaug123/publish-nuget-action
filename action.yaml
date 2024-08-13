@@ -12,6 +12,10 @@ inputs:
   nupkg-dir:
     description: 'Directory in which to find the NuGet .nupkg file'
     required: true
+  dotnet:
+    description: 'Path to the `dotnet` executable.'
+    required: false
+    default: 'dotnet'
 
 runs:
   using: "composite"
@@ -23,6 +27,7 @@ runs:
         NUGET_API_KEY: ${{ inputs.nuget-key }}
         PACKAGE_DIR: ${{ inputs.nupkg-dir }}
         PACKAGE_NAME: ${{ inputs.package-name }}
+        DOTNET_EXE: ${{ inputs.dotnet }}
       run: '$GITHUB_ACTION_PATH/nuget_push.sh "$PACKAGE_DIR"/"$PACKAGE_NAME".*.nupkg'
     - name: Wait for availability
       shell: bash
