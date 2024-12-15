@@ -1,5 +1,7 @@
 # publish-nuget-action
 
+**This is archived in favour of the [G-Research fork](https://github.com/G-Research/common-actions/tree/33666a03520041a810d377d5b01507df9a5b5d83/publish-nuget).**
+
 A GitHub Action which pushes a package to NuGet.org, and also performs [GitHub artefact attestation](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds) on the result.
 
 If there's already a package in NuGet with that ID and version number, this job will detect this and do no further work: it will pass successfully without attempting an artefact attestation.
